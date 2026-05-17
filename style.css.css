@@ -1,0 +1,507 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0e27;
+    --bg-secondary: #131842;
+    --bg-card: #1a1f4e;
+    --text-primary: #ffffff;
+    --text-secondary: #8b8fa3;
+    --accent-bullish: #26a69a;
+    --accent-bearish: #ef5350;
+    --accent-neutral: #ffd700;
+    --border-color: #2a2f5e;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: var(--bg-secondary);
+    padding: 30px 0;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--accent-bullish), var(--accent-neutral));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* ===== CONTROL PANEL ===== */
+.control-panel {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: end;
+    box-shadow: var(--shadow);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px 15px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--accent-neutral);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.btn-analyze {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--accent-bullish), #1abc9c);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
+}
+
+.btn-analyze:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(38, 166, 154, 0.5);
+}
+
+.btn-auto {
+    padding: 12px 20px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-auto.active {
+    background: var(--accent-neutral);
+    color: var(--bg-primary);
+    border-color: var(--accent-neutral);
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.card {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-neutral);
+}
+
+/* ===== INFO CARDS ===== */
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row span {
+    color: var(--text-secondary);
+}
+
+.info-row strong {
+    font-size: 1.1rem;
+}
+
+.bullish { color: var(--accent-bullish); }
+.bearish { color: var(--accent-bearish); }
+.neutral { color: var(--accent-neutral); }
+
+/* ===== TREND BADGE ===== */
+.trend-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.trend-badge.uptrend {
+    background: rgba(38, 166, 154, 0.2);
+    color: var(--accent-bullish);
+    border: 1px solid var(--accent-bullish);
+}
+
+.trend-badge.downtrend {
+    background: rgba(239, 83, 80, 0.2);
+    color: var(--accent-bearish);
+    border: 1px solid var(--accent-bearish);
+}
+
+.trend-badge.sideways {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--accent-neutral);
+    border: 1px solid var(--accent-neutral);
+}
+
+.trend-details p {
+    padding: 5px 0;
+    color: var(--text-secondary);
+}
+
+.trend-details span {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ===== SUPPORT & RESISTANCE ===== */
+.sr-section {
+    margin-bottom: 20px;
+}
+
+.resistance-title {
+    color: var(--accent-bearish);
+    margin-bottom: 10px;
+}
+
+.support-title {
+    color: var(--accent-bullish);
+    margin-bottom: 10px;
+}
+
+.level-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+}
+
+.level-item .touches {
+    background: var(--bg-primary);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+/* ===== PATTERNS LIST ===== */
+.pattern-item {
+    background: var(--bg-primary);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-neutral);
+    animation: slideIn 0.3s ease;
+}
+
+.pattern-item.bullish {
+    border-left-color: var(--accent-bullish);
+}
+
+.pattern-item.bearish {
+    border-left-color: var(--accent-bearish);
+}
+
+.pattern-item .pattern-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.pattern-type {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.pattern-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.pattern-signal {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.pattern-signal.bullish {
+    background: rgba(38, 166, 154, 0.2);
+    color: var(--accent-bullish);
+}
+
+.pattern-signal.bearish {
+    background: rgba(239, 83, 80, 0.2);
+    color: var(--accent-bearish);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ===== CHART SECTION ===== */
+.chart-section {
+    margin: 30px 0;
+}
+
+.chart-card {
+    height: auto;
+}
+
+#chartContainer {
+    width: 100%;
+    height: 600px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.bullish { background: var(--accent-bullish); }
+.dot.bearish { background: var(--accent-bearish); }
+.dot.support { background: #4caf50; }
+.dot.resistance { background: #f44336; }
+
+/* ===== SIGNAL CARD ===== */
+.signal-section {
+    margin: 30px 0;
+}
+
+.signal-card {
+    border: 2px solid var(--border-color);
+    transition: all 0.3s;
+}
+
+.signal-card.strong-buy {
+    border-color: var(--accent-bullish);
+    box-shadow: 0 0 20px rgba(38, 166, 154, 0.3);
+}
+
+.signal-card.strong-sell {
+    border-color: var(--accent-bearish);
+    box-shadow: 0 0 20px rgba(239, 83, 80, 0.3);
+}
+
+.signal-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.signal-stat {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-primary);
+    border-radius: 10px;
+}
+
+.signal-stat .number {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.signal-stat .label {
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.recommendation {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.recommendation.buy {
+    background: rgba(38, 166, 154, 0.2);
+    color: var(--accent-bullish);
+}
+
+.recommendation.sell {
+    background: rgba(239, 83, 80, 0.2);
+    color: var(--accent-bearish);
+}
+
+.recommendation.neutral {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--accent-neutral);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--bg-secondary);
+    padding: 20px 0;
+    margin-top: 50px;
+    border-top: 2px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.no-data {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+}
+
+/* ===== LOADING ===== */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--accent-neutral);
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .control-panel {
+        flex-direction: column;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #chartContainer {
+        height: 400px;
+    }
+    
+    .signal-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

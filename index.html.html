@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Action Detector - Trading System</title>
+    
+    <!-- Chart.js untuk grafik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Lightweight Charts (TradingView style) -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>📊 Price Action Detector</h1>
+            <p class="subtitle">Advanced Candlestick Pattern Recognition</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="input-group">
+                <label for="symbol">Symbol:</label>
+                <input type="text" id="symbol" value="AAPL" placeholder="e.g., AAPL, BTC-USD">
+            </div>
+            
+            <div class="input-group">
+                <label for="timeframe">Timeframe:</label>
+                <select id="timeframe">
+                    <option value="5m">5 Minutes</option>
+                    <option value="15m">15 Minutes</option>
+                    <option value="1h">1 Hour</option>
+                    <option value="4h">4 Hours</option>
+                    <option value="1d" selected>1 Day</option>
+                    <option value="1wk">1 Week</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label for="period">Period:</label>
+                <select id="period">
+                    <option value="1mo">1 Month</option>
+                    <option value="3mo">3 Months</option>
+                    <option value="6mo" selected>6 Months</option>
+                    <option value="1y">1 Year</option>
+                </select>
+            </div>
+            
+            <button id="analyzeBtn" class="btn-analyze">
+                🔍 Analyze
+            </button>
+            
+            <button id="autoRefreshBtn" class="btn-auto">
+                ⏱️ Auto Refresh: OFF
+            </button>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Price & Trend Info -->
+            <div class="card info-card">
+                <h3>💰 Market Overview</h3>
+                <div id="marketInfo">
+                    <div class="info-row">
+                        <span>Current Price:</span>
+                        <strong id="currentPrice">--</strong>
+                    </div>
+                    <div class="info-row">
+                        <span>Change:</span>
+                        <strong id="priceChange">--</strong>
+                    </div>
+                    <div class="info-row">
+                        <span>Volume:</span>
+                        <strong id="volume">--</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trend Analysis -->
+            <div class="card trend-card">
+                <h3>📈 Trend Analysis</h3>
+                <div id="trendInfo">
+                    <div class="trend-badge" id="trendBadge">--</div>
+                    <div class="trend-details">
+                        <p>Strength: <span id="trendStrength">--</span></p>
+                        <p>EMA 20: <span id="ema20">--</span></p>
+                        <p>EMA 50: <span id="ema50">--</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support & Resistance -->
+            <div class="card sr-card">
+                <h3>🎯 Support & Resistance</h3>
+                <div id="srLevels">
+                    <div class="sr-section">
+                        <h4 class="resistance-title">Resistance</h4>
+                        <div id="resistanceLevels">--</div>
+                    </div>
+                    <div class="sr-section">
+                        <h4 class="support-title">Support</h4>
+                        <div id="supportLevels">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detected Patterns -->
+            <div class="card patterns-card">
+                <h3>🕯️ Detected Patterns</h3>
+                <div id="patternsList">
+                    <p class="no-data">No patterns detected yet</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="card chart-card">
+                <h3>📉 Price Chart</h3>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="dot bullish"></span> Bullish</span>
+                    <span class="legend-item"><span class="dot bearish"></span> Bearish</span>
+                    <span class="legend-item"><span class="dot support"></span> Support</span>
+                    <span class="legend-item"><span class="dot resistance"></span> Resistance</span>
+                </div>
+                <div id="chartContainer"></div>
+            </div>
+        </div>
+
+        <!-- Signal Summary -->
+        <div class="signal-section">
+            <div class="card signal-card" id="signalCard">
+                <h3>💡 Trading Signal</h3>
+                <div id="signalContent">
+                    <p class="no-data">Run analysis to get signals</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>⚠️ Disclaimer: This tool is for educational purposes only. Always do your own research.</p>
+            <p>Data provided by Alpha Vantage & Yahoo Finance</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/indicators.js"></script>
+    <script src="js/patterns.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
